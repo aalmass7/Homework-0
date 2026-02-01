@@ -1,4 +1,4 @@
 package edu.narxoz.galactic.dispatcher;
 
-public class Result {
+public record Result(boolean ok, String reason) {
 }

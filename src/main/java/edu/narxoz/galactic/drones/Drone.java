@@ -28,5 +28,11 @@ public abstract class Drone {
     protected void setStatus(DroneStatus status){
         this.status = status;
     }
+    public void markInFlight(){
+        setStatus(DroneStatus.IN_FLIGHT);
+    }
+    public void markIdle(){
+        setStatus(DroneStatus.IDLE);
+    }
     public abstract double speedKmPerMin();
 }

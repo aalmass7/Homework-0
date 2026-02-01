@@ -1,8 +1,9 @@
-package edu.narxoz.galactic.task;
+package edu.narxoz.galactic.dispatcher;
 
-import edu.narxoz.galactic.dispatcher.Result;
 import edu.narxoz.galactic.drones.Drone;
 import edu.narxoz.galactic.drones.DroneStatus;
+import edu.narxoz.galactic.task.DeliveryTask;
+import edu.narxoz.galactic.task.TaskState;
 
 public class Dispatcher {
 
@@ -19,8 +20,21 @@ public class Dispatcher {
         if(task.getState() != TaskState.CREATED){
             return new Result(false, "Task state is not CREATED");
         }
-        task.setAssignedDrone(drone);
-        task.setState(TaskState.ASSIGNED);
-         drone.setЫ
+        task.assignFromDispatcher(drone);
+        drone.markInFlight();
+        return new Result(true, "Assigned");
+    }
+
+    public Result completeTask(DeliveryTask task){
+        if(task == null){
+            return new Result(false, "Task null");
+        }
+        if(task.getState() != TaskState.ASSIGNED){
+            return new Result(false, "Task not ASSIGNED");
+        }
+        Drone drone = task.getAssignedDrone();
+        task.completeFromDispatcher();
+        drone.markIdle();
+        return new Result(true, "Completed");
     }
 }
