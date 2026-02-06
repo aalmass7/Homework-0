@@ -12,6 +12,9 @@ public class DeliveryTask {
     private Drone assignedDrone;
 
     public DeliveryTask(CelestialBody origin, CelestialBody destination, Cargo cargo){
+        if(origin == null || destination == null || cargo == null){
+            throw new IllegalArgumentException("origin, destinition or cargo can't be null");
+        }
         this.origin = origin;
         this.destination = destination;
         this.cargo = cargo;

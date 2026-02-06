@@ -11,7 +11,7 @@ public class Demo {
         Planet earth = new Planet("Earth", 0, 0, "Oxygen");
         SpaceStation station = new SpaceStation("ISS", 100, 0, 3);
 
-        Cargo cargo = new Cargo(20, "Supplies");
+        Cargo cargo = new Cargo(60, "Supplies");
 
         LightDrone light = new LightDrone("LD-1", 10);
         HeavyDrone heavy = new HeavyDrone("HD-1", 50);
@@ -22,8 +22,9 @@ public class Demo {
 
         System.out.println(dispatcher.assignTask(task, light));
         System.out.println(dispatcher.assignTask(task, heavy));
+        System.out.println("After assign: task = " + task.getState() + ", heavy=" + heavy.getStatus());
         System.out.println("Estimated time: " + task.estimateTime());
         System.out.println(dispatcher.completeTask(task));
-        System.out.println("Final state: " + task.getState());
+        System.out.println("Final statuses: task= " + task.getState() + ", heavy=" + heavy.getStatus());
     }
 }
